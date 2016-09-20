@@ -10,34 +10,16 @@ b = Buffer.readChannel(s, "/Users/rob/Supercollider/GranularSynthesis/drone_samp
 // define synth "drone" for endless ambience via granular synthesis
 (
 SynthDef(\drone, {
-	var offsets, sig;
-
-	offsets = Array.fill(
-		size: 16,
-		function: { arg i; i * 0.066 }
-	).scramble;
-
-	sig = GrainBuf.ar(
-		trigger: Dust.kr(density: 1!16),
-		dur: LFNoise1.kr(freq: 0.1!16).range(2, 4),
-		sndbuf: b.bufnum,
-		rate: Select.kr(
-			which: LFNoise1.kr(1!16).range(0, 2),
-			array: [0.5, 1, 2]
-		),
-		pos: VarSaw.ar(
-			freq: 1/b.duration,
-			iphase: offsets,
-			width: 0
-		)
-	);
-
-	sig = Splay.ar( inArray: sig );
-
-	Out.ar(
-		bus: 0,
-		channelsArray: sig
-	)
+	var offset, trigger, dur, buffer, rate, pos, sig;
+	offset = Array.fill(16, { arg i; i * 0.066 }).scramble;
+	trigger = Dust.kr(1!16);
+	dur = LFNoise1.kr(0.1!16).range(2, 4);
+	buffer = b.bufnum;
+	rate = Select.kr(LFNoise1.kr(1!16).range(0, 2), [0.5, 1, 2]);
+	pos = VarSaw.ar(1/b.duration, offset, 0);
+	sig = GrainBuf.ar(1, trigger, dur, buffer, rate, pos);
+	sig = Splay.ar(sig);
+	Out.ar(0, sig)
 }).add;
 )
 
