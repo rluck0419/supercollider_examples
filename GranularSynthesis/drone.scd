@@ -5,7 +5,7 @@ s.options.memSize = 2.pow(21);
 s.boot
 
 // buffer created containing left channel of a waterfall sample
-b = Buffer.readChannel(s, "/Users/rob/Music/Sample Library/2. Complex Sustained:Environmental/Natural/Waterfall.aiff", channels:[0]);
+b = Buffer.readChannel(s, "/Users/rob/Supercollider/GranularSynthesis/Waterfall.aiff", channels:[0]);
 
 (
 // define synth with the name "drone"
