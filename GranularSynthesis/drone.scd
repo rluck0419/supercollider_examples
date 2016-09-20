@@ -15,14 +15,14 @@ SynthDef(\drone, {
 	offsets = Array.fill(
 		size: 16,
 		function: { arg i; i * 0.066 }
-	).postln;
+	).scramble;
 
 	sig = GrainBuf.ar(
 		trigger: Dust.kr(density: 1!16),
-		dur: LFNoise1.kr(freq: 0.1).range(lo: 2, hi: 4),
+		dur: LFNoise1.kr(freq: 0.1!16).range(2, 4),
 		sndbuf: b.bufnum,
 		rate: Select.kr(
-			which: LFNoise1.kr(1).range(0,2),
+			which: LFNoise1.kr(1!16).range(0, 2),
 			array: [0.5, 1, 2]
 		),
 		pos: VarSaw.ar(
