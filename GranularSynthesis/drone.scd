@@ -10,6 +10,7 @@ b = Buffer.readChannel(s, "/Users/rob/Supercollider/GranularSynthesis/drone_samp
 // define synth "drone" for endless ambience via granular synthesis
 (
 SynthDef(\drone, {
+	arg gate=1, amp=0.5;
 	var trigger, dur, selector, rate, offset, pos, sig;
 	trigger = Dust.kr(1!16);
 	dur = LFNoise1.kr(0.1!16).range(2, 4);
@@ -20,9 +21,12 @@ SynthDef(\drone, {
 
 	sig = GrainBuf.ar(1, trigger, dur, b.bufnum, rate, pos);
 	sig = Splay.ar(sig);
+	sig = sig * amp;
 	Out.ar(0, sig)
 }).add;
 )
 
 // create synth and generate endless ambient sound
-Synth.new(\drone);
+~drone = Synth.new(\drone);
+~drone.set(\amp, 0.2);
+~drone.free;
