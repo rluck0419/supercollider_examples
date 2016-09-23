@@ -18,5 +18,6 @@
 ~binary.value(512);
 ~binary.value(1023);
 ~binary.value(1024);
+~binary.value(1024.5);
 ~binary.value('a');
 ~binary.value('10');
