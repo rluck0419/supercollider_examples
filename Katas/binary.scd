@@ -2,10 +2,10 @@
 ~binary = {
 	|n|
 	var width = 0, output = 'invalid argument';
-	var num = n;
-	if (n.asInt == n, {
+	var num = n.asInt;
+	if (n.asInt.asString == n.asString, {
 		while ({ num / 2 >= 1 }, { width = width + 1; num = num / 2 });
-		output = n.asBinaryString(width + 1);
+		output = n.asInt.asBinaryString(width + 1);
 	});
 	output
 };
