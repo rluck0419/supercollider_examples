@@ -1,8 +1,7 @@
 (
 ~binary = {
 	|n|
-	var width = 0, output = 'invalid argument';
-	var num = n.asInt;
+	var num = n.asInt, width = 0, output = 'invalid argument';
 	if (n.asInt.asString == n.asString, {
 		while ({ num / 2 >= 1 }, { width = width + 1; num = num / 2 });
 		output = n.asInt.asBinaryString(width + 1);
