@@ -1,7 +1,7 @@
 (
 ~is_pangram = {
 	|s|
-	var is_pangram = true, sarray = [], alpha = Array.fill(26, { arg i; "abcdefghijklmnopqrstuvwxyz"[i] });
+	var is_pangram = true, alpha = Array.fill(26, { arg i; "abcdefghijklmnopqrstuvwxyz"[i] });
 	alpha.do({
 		arg item, i;
 		if (s.containsi(item.asString) == false, { is_pangram = false });
