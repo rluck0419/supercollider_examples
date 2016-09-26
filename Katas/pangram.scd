@@ -1,37 +1,23 @@
 (
 ~is_pangram = {
 	|s|
-	var string = s, is_pangram = true, alpha = Array.fill(26, { arg i; "abcdefghijklmnopqrstuvwxyz"[i] });
-	if (!string.containsi("a"), { is_pangram = false });
-	if (!string.containsi("b"), { is_pangram = false });
-	if (!string.containsi("c"), { is_pangram = false });
-	if (!string.containsi("d"), { is_pangram = false });
-	if (!string.containsi("e"), { is_pangram = false });
-	if (!string.containsi("f"), { is_pangram = false });
-	if (!string.containsi("g"), { is_pangram = false });
-	if (!string.containsi("h"), { is_pangram = false });
-	if (!string.containsi("i"), { is_pangram = false });
-	if (!string.containsi("j"), { is_pangram = false });
-	if (!string.containsi("k"), { is_pangram = false });
-	if (!string.containsi("l"), { is_pangram = false });
-	if (!string.containsi("m"), { is_pangram = false });
-	if (!string.containsi("n"), { is_pangram = false });
-	if (!string.containsi("o"), { is_pangram = false });
-	if (!string.containsi("p"), { is_pangram = false });
-	if (!string.containsi("q"), { is_pangram = false });
-	if (!string.containsi("r"), { is_pangram = false });
-	if (!string.containsi("s"), { is_pangram = false });
-	if (!string.containsi("t"), { is_pangram = false });
-	if (!string.containsi("u"), { is_pangram = false });
-	if (!string.containsi("v"), { is_pangram = false });
-	if (!string.containsi("w"), { is_pangram = false });
-	if (!string.containsi("x"), { is_pangram = false });
-	if (!string.containsi("y"), { is_pangram = false });
-	if (!string.containsi("z"), { is_pangram = false });
+	var is_pangram = true, non_alphas = 0, alpha, sarray = [];
+	alpha = Array.fill(26, { arg i; "abcdefghijklmnopqrstuvwxyz"[i] });
+	alpha.do({
+		arg item, i;
+		if (s.containsi(item.asString) == false, { is_pangram = false });
+	});
 	is_pangram
 }
 )
 
 ~is_pangram.value("");
+~is_pangram.value("d");
+~is_pangram.value("a quick movement of the enemy will jeopardize five gunboats");
 ~is_pangram.value("the quick brown fox jumps over the lazy dog");
 ~is_pangram.value("abcdefghijklmnopqrstuvwxyz");
+~is_pangram.value("the_quick_brown_fox_jumps_over_the_lazy_dog");
+~is_pangram.value("the 1 quick brown fox jumps over the 2 lazy dogs");
+~is_pangram.value("7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog");
+~is_pangram.value("Five quacking Zephyrs jolt my wax bed.");
+~is_pangram.value("Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.");
